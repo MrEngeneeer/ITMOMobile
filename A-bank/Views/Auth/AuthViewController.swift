@@ -234,6 +234,7 @@ class AuthViewController: UIViewController, AuthViewControllerProtocol {
             loginTextField.layer.borderColor = UIColor.clear.cgColor
         } else {
             loginErrorLabel.text = "Неверный формат email"
+            loginErrorLabel.textColor = .white
             loginErrorLabel.isHidden = false
             loginTextField.layer.borderWidth = 1
             loginTextField.layer.borderColor = UIColor.red.cgColor
@@ -252,6 +253,7 @@ class AuthViewController: UIViewController, AuthViewControllerProtocol {
             passwordTextField.layer.borderColor = UIColor.clear.cgColor
         } else {
             passwordErrorLabel.text = "Пароль должен содержать минимум 6 символов"
+            passwordErrorLabel.textColor = .white
             passwordErrorLabel.isHidden = false
             passwordTextField.layer.borderWidth = 1
             passwordTextField.layer.borderColor = UIColor.red.cgColor
