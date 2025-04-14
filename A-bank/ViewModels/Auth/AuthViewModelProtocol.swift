@@ -9,4 +9,6 @@ protocol AuthViewModelProtocol {
     var onAuthSuccess: (() -> Void)? { get set }
     var onAuthError: ((String) -> Void)? { get set }
     func authenticate(login: String, password: String)
+    func validateEmail(_ email: String) -> Bool
+    func validatePassword(_ password: String) -> Bool
 }

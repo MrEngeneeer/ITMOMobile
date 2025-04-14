@@ -10,29 +10,101 @@
 		0025BB932D94186F000EF9A3 /* A-bank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "A-bank.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		0068D3B12DA820310004D3E5 /* Exceptions for "Views" folder in "A-bank" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Accounts/AccountDetailViewControllerProtocol.swift,
+				Accounts/AccountListViewControllerProtocol.swift,
+				Auth/AuthViewController.swift,
+				Auth/AuthViewControllerProtocol.swift,
+				Common/LifecycleAwareViewController.swift,
+				Common/RefreshableViewController.swift,
+				Dashboard/DashboardViewControllerProtocol.swift,
+				Deposits/DepositListViewControllerProtocol.swift,
+				Loans/LoanListViewControllerProtocol.swift,
+			);
+			target = 0025BB922D94186F000EF9A3 /* A-bank */;
+		};
+		0068D3BC2DA8207E0004D3E5 /* Exceptions for "Models" folder in "A-bank" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Account.swift,
+				Deposit.swift,
+				Loan.swift,
+				User.swift,
+			);
+			target = 0025BB922D94186F000EF9A3 /* A-bank */;
+		};
+		0068D3BE2DA8211A0004D3E5 /* Exceptions for "App" folder in "A-bank" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				AppDelegate.swift,
+				SceneDelegate.swift,
+			);
+			target = 0025BB922D94186F000EF9A3 /* A-bank */;
+		};
+		0068D3C22DA8212D0004D3E5 /* Exceptions for "Services" folder in "A-bank" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Auth/AuthService.swift,
+				Auth/AuthServiceProtocol.swift,
+				DataStorage/DataStorageServiceProtocol.swift,
+			);
+			target = 0025BB922D94186F000EF9A3 /* A-bank */;
+		};
+		0068D3CC2DA821630004D3E5 /* Exceptions for "ViewModels" folder in "A-bank" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Account/AccountViewModelProtocol.swift,
+				Auth/AuthViewModel.swift,
+				Auth/AuthViewModelProtocol.swift,
+				Dashboard/DashboardViewModelProtocol.swift,
+				Deposit/DepositViewModelProtocol.swift,
+				Loan/LoanViewModelProtocol.swift,
+			);
+			target = 0025BB922D94186F000EF9A3 /* A-bank */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		0025BC332D9591D3000EF9A3 /* Models */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				0068D3BC2DA8207E0004D3E5 /* Exceptions for "Models" folder in "A-bank" target */,
+			);
 			path = Models;
 			sourceTree = "<group>";
 		};
 		0025BC342D9591F5000EF9A3 /* ViewModels */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				0068D3CC2DA821630004D3E5 /* Exceptions for "ViewModels" folder in "A-bank" target */,
+			);
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		0025BC352D959209000EF9A3 /* Views */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				0068D3B12DA820310004D3E5 /* Exceptions for "Views" folder in "A-bank" target */,
+			);
 			path = Views;
 			sourceTree = "<group>";
 		};
 		0025BC362D959210000EF9A3 /* Services */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				0068D3C22DA8212D0004D3E5 /* Exceptions for "Services" folder in "A-bank" target */,
+			);
 			path = Services;
 			sourceTree = "<group>";
 		};
 		0068D3462DA7FEAA0004D3E5 /* App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				0068D3BE2DA8211A0004D3E5 /* Exceptions for "App" folder in "A-bank" target */,
+			);
 			path = App;
 			sourceTree = "<group>";
 		};
@@ -103,6 +175,7 @@
 				TargetAttributes = {
 					0025BB922D94186F000EF9A3 = {
 						CreatedOnToolsVersion = 16.2;
+						LastSwiftMigration = 1620;
 					};
 				};
 			};
@@ -198,11 +271,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "A-bank";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -255,10 +330,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "A-bank";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
@@ -270,16 +347,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = NO;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -288,6 +367,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "ivan.A-bank";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -298,16 +379,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = NO;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -316,6 +399,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "ivan.A-bank";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

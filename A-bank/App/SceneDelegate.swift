@@ -10,21 +10,17 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
+    
     func scene(_ scene: UIScene,
                willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
-        
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
-        // Создаем окно
         window = UIWindow(windowScene: windowScene)
         
-        // Создаем AuthViewController
-        let authViewModel = AuthViewModel()
+        let authViewModel = AuthViewModel(authService: AuthService())
         let authVC = AuthViewController(viewModel: authViewModel)
-        
-        // Устанавливаем корневой контроллер
         window?.rootViewController = authVC
         window?.makeKeyAndVisible()
+
     }
 }

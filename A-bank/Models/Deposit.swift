@@ -5,6 +5,8 @@
 //  Created by Vladimir Ganetski on 27.03.2025.
 //
 
+import Foundation
+
 // Вклад
 struct Deposit {
     let id: String
