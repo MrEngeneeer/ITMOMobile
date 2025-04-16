@@ -31,6 +31,7 @@
 			membershipExceptions = (
 				Account.swift,
 				Deposit.swift,
+				Endpoint.swift,
 				Loan.swift,
 				User.swift,
 			);
@@ -47,20 +48,28 @@
 		0068D3C22DA8212D0004D3E5 /* Exceptions for "Services" folder in "A-bank" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Auth/AuthService.swift,
+				API/APIService.swift,
+				API/APIServiceProtocol.swift,
+				Auth/APIAuthService.swift,
 				Auth/AuthServiceProtocol.swift,
+				Auth/LocalAuthService.swift,
 				DataStorage/DataStorageServiceProtocol.swift,
+				Network/NetworkService.swift,
+				Network/NetworkServiceProtocol.swift,
 			);
 			target = 0025BB922D94186F000EF9A3 /* A-bank */;
 		};
 		0068D3CC2DA821630004D3E5 /* Exceptions for "ViewModels" folder in "A-bank" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Account/AccountViewModel.swift,
 				Account/AccountViewModelProtocol.swift,
 				Auth/AuthViewModel.swift,
 				Auth/AuthViewModelProtocol.swift,
 				Dashboard/DashboardViewModelProtocol.swift,
+				Deposit/DepositViewModel.swift,
 				Deposit/DepositViewModelProtocol.swift,
+				Loan/LoanViewModel.swift,
 				Loan/LoanViewModelProtocol.swift,
 			);
 			target = 0025BB922D94186F000EF9A3 /* A-bank */;

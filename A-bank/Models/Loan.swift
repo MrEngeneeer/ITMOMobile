@@ -6,7 +6,7 @@
 //
 
 // Кредит
-struct Loan {
+struct Loan: Codable {
     let id: String
     let amount: Double
     let interestRate: Double

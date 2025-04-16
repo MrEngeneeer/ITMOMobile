@@ -6,12 +6,12 @@
 //
 
 // Счет
-enum AccountType {
+enum AccountType: String, Codable {
     case debit
     case credit
 }
 
-struct Account {
+struct Account: Codable {
     let id: String
     let type: AccountType
     let balance: Double
