@@ -26,6 +26,7 @@ protocol AuthServiceProtocol {
 
     func logout()
     
+    var authToken: String? { get }
 
     var isAuthenticated: Bool { get }
 }
