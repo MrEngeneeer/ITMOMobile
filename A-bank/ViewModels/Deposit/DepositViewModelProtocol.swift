@@ -9,4 +9,5 @@ protocol DepositViewModelProtocol {
     var deposits: [Deposit] { get }
     var onDataUpdated: (() -> Void)? { get set }
     func fetchDeposits()
+    func nextPage()
 }

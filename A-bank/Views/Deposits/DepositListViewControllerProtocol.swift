@@ -6,7 +6,7 @@
 //
 
 // Список вкладов
-protocol DepositListViewControllerProtocol: AnyObject {
+protocol DepositViewControllerProtocol: AnyObject {
     func reloadDeposits()
     func showNewDepositForm()
     func showDepositDetails(for depositId: String)

@@ -6,7 +6,7 @@
 //
 
 // Кредит
-struct Loan {
+struct Loan: Decodable {
     let id: String
     let amount: Double
     let interestRate: Double

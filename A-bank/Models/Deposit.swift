@@ -8,7 +8,7 @@
 import Foundation
 
 // Вклад
-struct Deposit {
+struct Deposit: Decodable {
     let id: String
     let amount: Double
     let interestRate: Double

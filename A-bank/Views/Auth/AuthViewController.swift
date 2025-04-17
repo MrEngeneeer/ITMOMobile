@@ -38,7 +38,7 @@ class AuthViewController: UIViewController, AuthViewControllerProtocol {
     
     private lazy var loginErrorLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .red
+        label.textColor = .white
         label.font = .systemFont(ofSize: 12)
         label.isHidden = true
         return label
@@ -56,7 +56,7 @@ class AuthViewController: UIViewController, AuthViewControllerProtocol {
     
     private lazy var passwordErrorLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .red
+        label.textColor = .white
         label.font = .systemFont(ofSize: 12)
         label.isHidden = true
         return label
@@ -93,6 +93,9 @@ class AuthViewController: UIViewController, AuthViewControllerProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.extendedLayoutIncludesOpaqueBars = true
+        self.edgesForExtendedLayout = .all
+        
         setupUI()
         setupKeyboardObservers()
         setupTapGesture()
@@ -132,10 +135,12 @@ class AuthViewController: UIViewController, AuthViewControllerProtocol {
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
-            stackView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -40)
+            stackView.topAnchor.constraint(greaterThanOrEqualTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 40),
+            stackView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 32),
+            stackView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -32),
+            stackView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -40),
+            stackView.centerYAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.centerYAnchor),
+            
         ])
     }
     
@@ -223,7 +228,6 @@ class AuthViewController: UIViewController, AuthViewControllerProtocol {
         let isPasswordValid = validatePassword()
         return isEmailValid && isPasswordValid
     }
-    
     @discardableResult
     private func validateEmail() -> Bool {
         guard let email = loginTextField.text else { return false }
@@ -242,7 +246,6 @@ class AuthViewController: UIViewController, AuthViewControllerProtocol {
         
         return isValid
     }
-    
     @discardableResult
     private func validatePassword() -> Bool {
         guard let password = passwordTextField.text else { return false }
@@ -253,7 +256,7 @@ class AuthViewController: UIViewController, AuthViewControllerProtocol {
             passwordTextField.layer.borderColor = UIColor.clear.cgColor
         } else {
             passwordErrorLabel.text = "Пароль должен содержать минимум 6 символов"
-            passwordErrorLabel.textColor = .white
+            loginErrorLabel.textColor = .white
             passwordErrorLabel.isHidden = false
             passwordTextField.layer.borderWidth = 1
             passwordTextField.layer.borderColor = UIColor.red.cgColor
