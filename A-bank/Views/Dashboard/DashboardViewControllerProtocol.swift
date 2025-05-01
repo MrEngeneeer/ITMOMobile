@@ -7,9 +7,5 @@
 
 // Все доступные функции
 protocol DashboardViewControllerProtocol: AnyObject {
-    func displayUserInfo(name: String, totalBalance: String)
-    func reloadAccountsSection()
-    func reloadDepositsSection()
-    func reloadLoansSection()
-    func showSessionExpiredAlert()
+    func displayUserInfo(name: String)
 }

@@ -11,25 +11,28 @@ import Foundation
 enum Endpoint {
     case auth
     case register
+    case user
     
     case accounts(page: Int)
     case deposits(page: Int)
     case loans(page: Int)
     
-    private var baseURL: String { "https://my-cool-api.com/" }
+    private var baseURL: String { "https://alfa-itmo.ru/server/v1/storage" }
     
     var url: URL {
         switch self {
         case .auth:
-            return URL(string: "\(baseURL)auth")!
+            return URL(string: "\(baseURL)/auth")!
         case .register:
-            return URL(string: "\(baseURL)register")!
+            return URL(string: "\(baseURL)/register")!
         case .accounts(let page):
-            return URL(string: "\(baseURL)accounts?page=\(page)")!
+            return URL(string: "\(baseURL)/accounts?page=\(page)&per_page=5")!
         case .deposits(let page):
-            return URL(string: "\(baseURL)deposits?page=\(page)")!
+            return URL(string: "\(baseURL)/deposits?page=\(page)&per_page=5")!
         case .loans(let page):
-            return URL(string: "\(baseURL)loans?page=\(page)")!
+            return URL(string: "\(baseURL)/loans?page=\(page)&per_page=5")!
+        case .user:
+            return URL(string: "\(baseURL)/user")!
         }
     }
 }

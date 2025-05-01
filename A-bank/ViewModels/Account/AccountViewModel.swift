@@ -32,8 +32,10 @@ class AccountViewModel: AccountViewModelProtocol {
         }
     }
     
-    func selectAccount(id: String) {
-        print("Выбран аккаунт с ID: \(id)")
+    func refreshAccounts() {
+        currentPage = 1
+        accounts.removeAll()
+        fetchAccounts()
     }
     
     func nextPage() {

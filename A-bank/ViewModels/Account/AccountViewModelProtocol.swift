@@ -9,6 +9,6 @@ protocol AccountViewModelProtocol {
     var accounts: [Account] { get }
     var onDataUpdated: (() -> Void)? { get set }
     func fetchAccounts()
-    func selectAccount(id: String)
+    func refreshAccounts()
     func nextPage()
 }

@@ -6,7 +6,7 @@
 //
 
 // Счет
-enum AccountType: String, Codable {
+enum AccountType: String, Decodable {
     case debit
     case credit
 }
@@ -16,4 +16,8 @@ struct Account: Decodable {
     let type: AccountType
     let balance: Double
     let currency: String
+}
+
+struct AccountsResponse: Decodable {
+    let accounts: [Account]
 }

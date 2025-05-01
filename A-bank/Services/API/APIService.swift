@@ -8,6 +8,8 @@
 import Foundation
 
 class APIService: APIServiceProtocol {
+    
+    
     private let networkService: NetworkServiceProtocol
     private let authService: AuthServiceProtocol
     private let jsonDecoder: JSONDecoder
@@ -25,8 +27,10 @@ class APIService: APIServiceProtocol {
     
     private func createRequest(url: URL) -> URLRequest {
         var request = URLRequest(url: url)
+        request.httpMethod = "GET"
         if let token = authService.authToken {
-            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            let credentials = token.data(using: .utf8)!.base64EncodedString()
+            request.addValue("Basic \(credentials)", forHTTPHeaderField: "Authorization")
         }
         return request
     }
@@ -41,13 +45,23 @@ class APIService: APIServiceProtocol {
     
     func fetchAccounts(page: Int, completion: @escaping (Result<[Account], Error>) -> Void) {
         guard handleAuthCheck(completion: completion) else { return }
-        
         let url = Endpoint.accounts(page: page).url
         let request = createRequest(url: url)
-        networkService.fetch(request: request) { (result: Result<[Account], NetworkError>) in
+        networkService.fetch(request: request) { (result: Result<AccountsResponse, NetworkError>) in
             switch result {
-            case .success(let accounts):
-                completion(.success(accounts))
+            case .success(let response):
+                let allAccounts = response.accounts
+                            
+                let startIndex = (page - 1) * 5
+                guard startIndex >= 0 && startIndex < allAccounts.count else {
+                    completion(.success([]))
+                    return
+                }
+                
+                let endIndex = min(startIndex + 5, allAccounts.count)
+                let paginatedAccounts = Array(allAccounts[startIndex..<endIndex])
+                
+                completion(.success(paginatedAccounts))
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -59,10 +73,20 @@ class APIService: APIServiceProtocol {
         
         let url = Endpoint.deposits(page: page).url
         let request = createRequest(url: url)
-        networkService.fetch(request: request) { (result: Result<[Deposit], NetworkError>) in
+        networkService.fetch(request: request) { (result: Result<DepositsResponse, NetworkError>) in
             switch result {
-            case .success(let deposits):
-                completion(.success(deposits))
+            case .success(let response):
+                let allDeposits = response.deposits
+                            
+                let startIndex = (page - 1) * 5
+                guard startIndex >= 0 && startIndex < allDeposits.count else {
+                    completion(.success([]))
+                    return
+                }
+                
+                let endIndex = min(startIndex + 5, allDeposits.count)
+                let paginatedDeposits = Array(allDeposits[startIndex..<endIndex])
+                completion(.success(paginatedDeposits))
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -74,13 +98,38 @@ class APIService: APIServiceProtocol {
         
         let url = Endpoint.loans(page: page).url
         let request = createRequest(url: url)
-        networkService.fetch(request: request) { (result: Result<[Loan], NetworkError>) in
+        networkService.fetch(request: request) { (result: Result<LoansResponse, NetworkError>) in
             switch result {
-            case .success(let loans):
-                completion(.success(loans))
+            case .success(let response):
+                let allLoans = response.loans
+                            
+                let startIndex = (page - 1) * 5
+                guard startIndex >= 0 && startIndex < allLoans.count else {
+                    completion(.success([]))
+                    return
+                }
+                
+                let endIndex = min(startIndex + 5, allLoans.count)
+                let paginatedLoans = Array(allLoans[startIndex..<endIndex])
+                completion(.success(paginatedLoans))
             case .failure(let error):
                 completion(.failure(error))
+            }
         }
     }
+    
+    func fetchUser(completion: @escaping (Result<User, any Error>) -> Void) {
+        guard handleAuthCheck(completion: completion) else { return }
+        
+        let url = Endpoint.user.url
+        let request = createRequest(url: url)
+        networkService.fetch(request: request) { (result: Result<User, NetworkError>) in
+            switch result {
+            case .success(let response):
+                completion(.success(response))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 }

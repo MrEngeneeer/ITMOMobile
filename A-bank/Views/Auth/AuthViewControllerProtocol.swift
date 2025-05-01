@@ -9,5 +9,4 @@
 protocol AuthViewControllerProtocol: AnyObject {
     func showLoadingIndicator(_ show: Bool)
     func showError(message: String)
-    func proceedToDashboard()
 }

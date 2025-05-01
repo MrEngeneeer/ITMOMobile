@@ -12,3 +12,7 @@ struct Loan: Decodable {
     let interestRate: Double
     let remainingPayments: Int
 }
+
+struct LoansResponse: Decodable {
+    let loans: [Loan]
+}

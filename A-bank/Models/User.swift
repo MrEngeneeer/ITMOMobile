@@ -9,7 +9,4 @@
 struct User: Decodable {
     let id: String
     let name: String
-    let accounts: [Account]
-    let deposits: [Deposit]
-    let loans: [Loan]
 }
