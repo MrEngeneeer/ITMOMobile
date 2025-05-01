@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AuthService: AuthServiceProtocol {
+class LocalAuthService: AuthServiceProtocol {
     
     private let userDefaults = UserDefaults.standard
     private let usersKey = "storedUsers"
@@ -41,6 +41,10 @@ class AuthService: AuthServiceProtocol {
     
     var isAuthenticated: Bool {
         return currentUser != nil
+    }
+    
+    var authToken: String? {
+        return "my cool local token"
     }
     
     func authenticate(login: String,

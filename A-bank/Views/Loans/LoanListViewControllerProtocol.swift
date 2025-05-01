@@ -6,7 +6,7 @@
 //
 
 // Список кредитов
-protocol LoanListViewControllerProtocol: AnyObject {
+protocol LoanViewControllerProtocol: AnyObject {
     func reloadLoans()
     func showLoanApplicationForm()
     func showLoanDetails(for loanId: String)

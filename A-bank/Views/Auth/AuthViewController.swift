@@ -38,7 +38,7 @@ class AuthViewController: UIViewController, AuthViewControllerProtocol {
     
     private lazy var loginErrorLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .red
+        label.textColor = .white
         label.font = .systemFont(ofSize: 12)
         label.isHidden = true
         return label
@@ -56,7 +56,7 @@ class AuthViewController: UIViewController, AuthViewControllerProtocol {
     
     private lazy var passwordErrorLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .red
+        label.textColor = .white
         label.font = .systemFont(ofSize: 12)
         label.isHidden = true
         return label
@@ -93,6 +93,7 @@ class AuthViewController: UIViewController, AuthViewControllerProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupUI()
         setupKeyboardObservers()
         setupTapGesture()
@@ -136,6 +137,7 @@ class AuthViewController: UIViewController, AuthViewControllerProtocol {
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
             stackView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -40)
+
         ])
     }
     
@@ -223,7 +225,6 @@ class AuthViewController: UIViewController, AuthViewControllerProtocol {
         let isPasswordValid = validatePassword()
         return isEmailValid && isPasswordValid
     }
-    
     @discardableResult
     private func validateEmail() -> Bool {
         guard let email = loginTextField.text else { return false }
@@ -242,7 +243,6 @@ class AuthViewController: UIViewController, AuthViewControllerProtocol {
         
         return isValid
     }
-    
     @discardableResult
     private func validatePassword() -> Bool {
         guard let password = passwordTextField.text else { return false }

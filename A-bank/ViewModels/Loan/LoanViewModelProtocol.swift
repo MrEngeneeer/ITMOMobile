@@ -9,4 +9,5 @@ protocol LoanViewModelProtocol {
     var loans: [Loan] { get }
     var onDataUpdated: (() -> Void)? { get set }
     func fetchLoans()
+    func nextPage()
 }
