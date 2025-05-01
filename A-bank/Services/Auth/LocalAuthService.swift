@@ -44,7 +44,7 @@ class LocalAuthService: AuthServiceProtocol {
     }
     
     var authToken: String? {
-        return "my cool local token"
+        return "368011:qklLRlkYW4do"
     }
     
     func authenticate(login: String,

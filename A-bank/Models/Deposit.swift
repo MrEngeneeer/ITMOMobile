@@ -14,3 +14,7 @@ struct Deposit: Decodable {
     let interestRate: Double
     let endDate: Date
 }
+
+struct DepositsResponse: Decodable {
+    let deposits: [Deposit]
+}
