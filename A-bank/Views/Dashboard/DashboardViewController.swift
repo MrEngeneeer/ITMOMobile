@@ -34,9 +34,9 @@ class DashboardViewController: UIViewController, DashboardViewControllerProtocol
     }()
 
     
-    private let accountsSection = DashboardSectionView(title: "Счета")
-    private let depositsSection = DashboardSectionView(title: "Депозиты")
-    private let loansSection = DashboardSectionView(title: "Кредиты")
+    private let accountsSection = Button()
+    private let depositsSection = Button()
+    private let loansSection = Button()
     
     init(viewModel: DashboardViewModelProtocol) {
         self.viewModel = viewModel
@@ -53,20 +53,17 @@ class DashboardViewController: UIViewController, DashboardViewControllerProtocol
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.fetchUserData()
-        accountsSection.onItemTap = { [weak self] in
-            self?.viewModel.navigateToAccounts()
-        }
-        depositsSection.onItemTap = { [weak self] in
-            self?.viewModel.navigateToDeposits()
-        }
-        loansSection.onItemTap = { [weak self] in
-            self?.viewModel.navigateToLoans()
-        }
+        accountsSection.addTarget(self, action: #selector(accountButtonTaped), for: .touchUpInside)
+        depositsSection.addTarget(self, action: #selector(depositButtonTaped), for: .touchUpInside)
+        loansSection.addTarget(self, action: #selector(loanButtonTaped), for: .touchUpInside)
         setupUI()
         
     }
     
     private func setupUI() {
+        accountsSection.configure(with: .init(title: "Счета", style: .primary))
+        depositsSection.configure(with: .init(title: "Вклады", style: .primary))
+        loansSection.configure(with: .init(title: "Кредиты", style: .primary))
         view.backgroundColor = .red
         view.addSubview(scrollView)
         scrollView.addSubview(contentStack)
@@ -92,5 +89,17 @@ class DashboardViewController: UIViewController, DashboardViewControllerProtocol
     
     func displayUserInfo(name: String) {
         nameLabel.text = name
+    }
+    
+    @objc func accountButtonTaped() {
+        self.viewModel.onNavigateToAccounts!()
+    }
+    
+    @objc func depositButtonTaped() {
+        self.viewModel.onNavigateToDeposits!()
+    }
+    
+    @objc func loanButtonTaped() {
+        self.viewModel.onNavigateToLoans!()
     }
 }

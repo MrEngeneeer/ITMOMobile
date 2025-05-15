@@ -25,16 +25,7 @@ class AuthViewController: UIViewController, AuthViewControllerProtocol {
         return view
     }()
     
-    private lazy var loginTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Email"
-        textField.borderStyle = .roundedRect
-        textField.autocapitalizationType = .none
-        textField.keyboardType = .emailAddress
-        textField.delegate = self
-        textField.addTarget(self, action: #selector(emailDidChange), for: .editingChanged)
-        return textField
-    }()
+    private lazy var loginTextField = TextField()
     
     private lazy var loginErrorLabel: UILabel = {
         let label = UILabel()
@@ -44,15 +35,7 @@ class AuthViewController: UIViewController, AuthViewControllerProtocol {
         return label
     }()
     
-    private lazy var passwordTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Пароль"
-        textField.borderStyle = .roundedRect
-        textField.isSecureTextEntry = true
-        textField.delegate = self
-        textField.addTarget(self, action: #selector(passwordDidChange), for: .editingChanged)
-        return textField
-    }()
+    private lazy var passwordTextField = TextField()
     
     private lazy var passwordErrorLabel: UILabel = {
         let label = UILabel()
@@ -62,23 +45,15 @@ class AuthViewController: UIViewController, AuthViewControllerProtocol {
         return label
     }()
     
-    private lazy var authButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setTitle("Войти", for: .normal)
-        button.setTitleColor(.red, for: .normal)
-        button.backgroundColor = .white
-        button.layer.cornerRadius = 8
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.red.cgColor
-        button.addTarget(self, action: #selector(didTapAuthButton), for: .touchUpInside)
-        return button
-    }()
+    private lazy var authButton = Button()
     
     private let loadingIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .medium)
         indicator.hidesWhenStopped = true
         return indicator
     }()
+    
+    private var logo = Logo()
     
     // MARK: - Lifecycle
     init(viewModel: AuthViewModelProtocol) {
@@ -93,7 +68,9 @@ class AuthViewController: UIViewController, AuthViewControllerProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        loginTextField.addTarget(self, action: #selector(emailDidChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(passwordDidChange), for: .editingChanged)
+        authButton.addTarget(self, action: #selector(didTapAuthButton), for: .touchUpInside)
         setupUI()
         setupKeyboardObservers()
         setupTapGesture()
@@ -106,13 +83,24 @@ class AuthViewController: UIViewController, AuthViewControllerProtocol {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         
+        loginTextField.configure(with: .init(placeholder: "Почта", style: .filledGray))
+        loginTextField.keyboardType = .emailAddress
+        
+        passwordTextField.configure(with: .init(placeholder: "Пароль", style: .filledGray))
+        passwordTextField.isSecureTextEntry = true
+        
+        authButton.configure(with: .init(title: "Войти", style: .destructive, isEnabled: false))
+        
+        logo.configure(with: .init(size: CGSize(width: 10, height: 150),color: .light))
+        
         let stackView = UIStackView(arrangedSubviews: [
+            logo,
             loginTextField,
             loginErrorLabel,
             passwordTextField,
             passwordErrorLabel,
             authButton,
-            loadingIndicator
+            loadingIndicator,
         ])
         stackView.axis = .vertical
         stackView.spacing = 8
@@ -264,10 +252,7 @@ class AuthViewController: UIViewController, AuthViewControllerProtocol {
     private func updateButtonState() {
         let isFormValid = !(loginTextField.text?.isEmpty ?? true) &&
                          !(passwordTextField.text?.isEmpty ?? true)
-        authButton.isEnabled = isFormValid
-        authButton.alpha = isFormValid ? 1.0 : 0.5
-        authButton.backgroundColor = isFormValid ? .white : .lightGray
-        authButton.setTitleColor(isFormValid ? .red : .darkGray, for: .normal)
+        authButton.configure(with: .init(title: "Войти", style: isFormValid ? .primary : .destructive, isEnabled: isFormValid ? true : false))
     }
     
     // MARK: - AuthViewControllerProtocol
