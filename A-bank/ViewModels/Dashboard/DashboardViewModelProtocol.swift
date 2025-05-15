@@ -8,8 +8,13 @@
 protocol DashboardViewModelProtocol {
     var user: User { get }
     var onDataUpdated: (() -> Void)? { get set }
-    func fetchUserData()
+    var onNavigateToAccounts: (() -> Void)? { get set }
+    var onNavigateToDeposits: (() -> Void)? { get set }
+    var onNavigateToLoans: (() -> Void)? { get set }
+    
     func navigateToAccounts()
     func navigateToDeposits()
     func navigateToLoans()
+    
+    func fetchUserData()
 }

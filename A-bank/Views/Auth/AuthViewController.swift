@@ -144,7 +144,6 @@ class AuthViewController: UIViewController, AuthViewControllerProtocol {
     private func setupBindings() {
         viewModel.onAuthSuccess = { [weak self] in
             self?.showLoadingIndicator(false)
-            self?.proceedToDashboard()
         }
         
         viewModel.onAuthError = { [weak self] message in
@@ -285,10 +284,6 @@ class AuthViewController: UIViewController, AuthViewControllerProtocol {
         )
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
-    }
-    
-    func proceedToDashboard() {
-        print("Успешный переход в дашборд")
     }
 }
 

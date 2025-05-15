@@ -14,14 +14,17 @@
 		0068D3B12DA820310004D3E5 /* Exceptions for "Views" folder in "A-bank" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Accounts/AccountDetailViewControllerProtocol.swift,
+				Accounts/AccountListViewController.swift,
 				Accounts/AccountListViewControllerProtocol.swift,
+				Accounts/AccountView.swift,
 				Auth/AuthViewController.swift,
 				Auth/AuthViewControllerProtocol.swift,
-				Common/LifecycleAwareViewController.swift,
-				Common/RefreshableViewController.swift,
+				Dashboard/DashboardSectionView.swift,
+				Dashboard/DashboardViewController.swift,
 				Dashboard/DashboardViewControllerProtocol.swift,
 				Deposits/DepositListViewControllerProtocol.swift,
+				GenericCell/ConfigurableView.swift,
+				GenericCell/GenericCell.swift,
 				Loans/LoanListViewControllerProtocol.swift,
 			);
 			target = 0025BB922D94186F000EF9A3 /* A-bank */;
@@ -41,6 +44,8 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				AppDelegate.swift,
+				Coordinator/AppCoordinator.swift,
+				Coordinator/AppCoordinatorProtocol.swift,
 				SceneDelegate.swift,
 			);
 			target = 0025BB922D94186F000EF9A3 /* A-bank */;
@@ -53,7 +58,6 @@
 				Auth/APIAuthService.swift,
 				Auth/AuthServiceProtocol.swift,
 				Auth/LocalAuthService.swift,
-				DataStorage/DataStorageServiceProtocol.swift,
 				Network/NetworkService.swift,
 				Network/NetworkServiceProtocol.swift,
 			);
@@ -66,6 +70,10 @@
 				Account/AccountViewModelProtocol.swift,
 				Auth/AuthViewModel.swift,
 				Auth/AuthViewModelProtocol.swift,
+				CollectionManager/CollectionManager.swift,
+				CollectionManager/CollectionManagerDelegate.swift,
+				CollectionManager/CollectionManagerProtocol.swift,
+				Dashboard/DashboardViewModel.swift,
 				Dashboard/DashboardViewModelProtocol.swift,
 				Deposit/DepositViewModel.swift,
 				Deposit/DepositViewModelProtocol.swift,
