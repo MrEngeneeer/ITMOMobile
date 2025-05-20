@@ -11,6 +11,43 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		000A3DF12DC7734F002B0C36 /* Exceptions for "DesignSystem" folder in "A-bank" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Account/StyledAccountView.swift,
+				Account/StyledAccountViewModel.swift,
+				BackButton/BackButton.swift,
+				BackButton/BackButtonViewModel.swift,
+				Button/Button.swift,
+				Button/ButtonViewModel.swift,
+				Logo/Logo.swift,
+				Logo/LogoViewModel.swift,
+				TextField/TextField.swift,
+				TextField/TextFieldViewModel.swift,
+			);
+			target = 0025BB922D94186F000EF9A3 /* A-bank */;
+		};
+		000A3E102DD5FBFC002B0C36 /* Exceptions for "BDUI" folder in "A-bank" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Mapper/BDUIMapperProtocol.swift,
+				Mapper/DefaultBDUIMapper.swift,
+				Mapper/ViewType.swift,
+				Models/ButtonModel.swift,
+				Models/ContentModel.swift,
+				Models/LabelModel.swift,
+				Models/LogoModel.swift,
+				Models/StackModel.swift,
+				Models/TextFieldModel.swift,
+				Styles/ButtonAction.swift,
+				Styles/ButtonStyle.swift,
+				Styles/ContentStyle.swift,
+				Styles/LabelStyle.swift,
+				Styles/StackStyle.swift,
+				Styles/TextFieldStyle.swift,
+			);
+			target = 0025BB922D94186F000EF9A3 /* A-bank */;
+		};
 		0068D3B12DA820310004D3E5 /* Exceptions for "Views" folder in "A-bank" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -85,6 +122,14 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		000A3E082DD5FB11002B0C36 /* BDUI */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				000A3E102DD5FBFC002B0C36 /* Exceptions for "BDUI" folder in "A-bank" target */,
+			);
+			path = BDUI;
+			sourceTree = "<group>";
+		};
 		0025BC332D9591D3000EF9A3 /* Models */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -125,6 +170,14 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		00856FBD2DC7610B0068BFC0 /* DesignSystem */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				000A3DF12DC7734F002B0C36 /* Exceptions for "DesignSystem" folder in "A-bank" target */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +194,8 @@
 		0025BB8A2D94186F000EF9A3 = {
 			isa = PBXGroup;
 			children = (
+				000A3E082DD5FB11002B0C36 /* BDUI */,
+				00856FBD2DC7610B0068BFC0 /* DesignSystem */,
 				0068D3462DA7FEAA0004D3E5 /* App */,
 				0025BC362D959210000EF9A3 /* Services */,
 				0025BC352D959209000EF9A3 /* Views */,
