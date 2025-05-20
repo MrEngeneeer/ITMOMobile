@@ -6,5 +6,6 @@
 //
 
 struct ButtonModel: Decodable {
-    let content: ButtonStyle
+    let style: ButtonStyle
+    let action: ButtonAction?
 }

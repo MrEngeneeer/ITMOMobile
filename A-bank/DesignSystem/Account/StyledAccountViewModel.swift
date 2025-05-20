@@ -8,7 +8,7 @@
 import UIKit
 
 public struct StyledAccountViewModel {
-    public enum Style {
+    public enum Style: String {
         case filledRed
         case outlinedRed
         case filledGray
