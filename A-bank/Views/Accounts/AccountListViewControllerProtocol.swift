@@ -7,6 +7,6 @@
 
 // Список счетов
 protocol AccountListViewControllerProtocol: AnyObject {
-    func reloadAccounts()
     func showLoadingError(message: String)
 }
+

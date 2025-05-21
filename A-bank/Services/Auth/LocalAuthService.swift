@@ -51,7 +51,7 @@ class LocalAuthService: AuthServiceProtocol {
                      password: String,
                      completion: @escaping (Result<Void, AuthError>) -> Void) {
         
-        DispatchQueue.global().asyncAfter(deadline: .now()) {
+        DispatchQueue.main.async {
             let storedPassword = self.users[login]
             guard let storedPassword = storedPassword else {
                 return completion(.failure(.invalidCredentials))

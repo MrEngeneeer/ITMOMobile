@@ -8,106 +8,71 @@ import UIKit
 
 class AccountListViewController: UIViewController, AccountListViewControllerProtocol {
     
-    
     private var viewModel: AccountViewModelProtocol
-    private var collectionManager: CollectionManager<AccountView, Account>!
-    private let refreshControl = UIRefreshControl()
-    private var collectionView: UICollectionView!
     private let loadingIndicator = UIActivityIndicatorView(style: .large)
     
-    init(viewModel: AccountViewModelProtocol = AccountViewModel()) {
+    init(viewModel: AccountViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        self.collectionManager = CollectionManager<AccountView, Account>()
-        (self.collectionManager as? CollectionManager)?.delegate = self
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupViewModel()
-        loadInitialData()
+        setupViewModelBindings()
+        loadInitialScreen()
     }
     
     private func setupUI() {
-        title = "Счета"
         view.backgroundColor = .systemBackground
         
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 16
-        layout.sectionInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
-        
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .clear
-        collectionManager.setupCollectionView(collectionView)
-        
-        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
-        collectionView.refreshControl = refreshControl
-        
         loadingIndicator.hidesWhenStopped = true
-        
-        let stackView = UIStackView(arrangedSubviews: [collectionView, loadingIndicator])
-        stackView.axis = .vertical
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(stackView)
+        loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(loadingIndicator)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
     
-    @objc private func handleRefresh() {
-            viewModel.refreshAccounts()
-    }
-    
-    private func setupViewModel() {
-        self.viewModel.onDataUpdated = { [weak self] in
-            self?.reloadAccounts()
+    private func setupViewModelBindings() {
+        viewModel.onViewReady = { [weak self] screenView in
+            guard let self = self else { return }
+            self.loadingIndicator.stopAnimating()
+            
+            self.view.addSubview(screenView)
+            screenView.translatesAutoresizingMaskIntoConstraints = false
+            
+            
+            NSLayoutConstraint.activate([
+                screenView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+                screenView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+                screenView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+                screenView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+            ])
+            
+        }
+        
+        viewModel.onLoadingError = { [weak self] message in
+            guard let self = self else { return }
+            self.loadingIndicator.stopAnimating()
+            self.showLoadingError(message: message)
         }
     }
     
-    private func loadInitialData() {
+    private func loadInitialScreen() {
         loadingIndicator.startAnimating()
-        viewModel.fetchAccounts()
-    }
-
-    
-    func reloadAccounts() {
-        loadingIndicator.stopAnimating()
-        refreshControl.endRefreshing()
-        collectionView.reloadData()
+        viewModel.fetchScreen()
     }
     
     func showLoadingError(message: String) {
-        loadingIndicator.stopAnimating()
-        refreshControl.endRefreshing()
         let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
-    }
-}
-
-
-extension AccountListViewController: CollectionManagerDelegate {
-    var numberOfItems: Int {
-        viewModel.accounts.count
-    }
-    
-    func item(at indexPath: IndexPath) -> Account {
-        viewModel.accounts[indexPath.row]
-    }
-    
-    func didScrollToBottom() {
-        viewModel.nextPage()
-    }
-    
-    func didSelectItem(at indexPath: IndexPath) {
     }
 }
