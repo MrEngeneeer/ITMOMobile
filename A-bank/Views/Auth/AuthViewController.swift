@@ -53,7 +53,7 @@ class AuthViewController: UIViewController, AuthViewControllerProtocol {
         return indicator
     }()
     
-    private var logo = Logo()
+    private lazy var logo = Logo()
     
     // MARK: - Lifecycle
     init(viewModel: AuthViewModelProtocol) {
