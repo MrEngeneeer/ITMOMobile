@@ -43,25 +43,14 @@ class APIService: APIServiceProtocol {
         return true
     }
     
-    func fetchAccounts(page: Int, completion: @escaping (Result<[Account], Error>) -> Void) {
+    func fetchAccounts(completion: @escaping (Result<ViewType, Error>) -> Void) {
         guard handleAuthCheck(completion: completion) else { return }
-        let url = Endpoint.accounts(page: page).url
+        let url = Endpoint.accounts.url
         let request = createRequest(url: url)
-        networkService.fetch(request: request) { (result: Result<AccountsResponse, NetworkError>) in
+        networkService.fetch(request: request) { (result: Result<ViewType, NetworkError>) in
             switch result {
             case .success(let response):
-                let allAccounts = response.accounts
-                            
-                let startIndex = (page - 1) * 5
-                guard startIndex >= 0 && startIndex < allAccounts.count else {
-                    completion(.success([]))
-                    return
-                }
-                
-                let endIndex = min(startIndex + 5, allAccounts.count)
-                let paginatedAccounts = Array(allAccounts[startIndex..<endIndex])
-                
-                completion(.success(paginatedAccounts))
+                completion(.success(response))
             case .failure(let error):
                 completion(.failure(error))
             }

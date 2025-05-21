@@ -13,7 +13,7 @@ enum Endpoint {
     case register
     case user
     
-    case accounts(page: Int)
+    case accounts
     case deposits(page: Int)
     case loans(page: Int)
     
@@ -25,8 +25,8 @@ enum Endpoint {
             return URL(string: "\(baseURL)/auth")!
         case .register:
             return URL(string: "\(baseURL)/register")!
-        case .accounts(let page):
-            return URL(string: "\(baseURL)/accounts?page=\(page)&per_page=5")!
+        case .accounts:
+            return URL(string: "\(baseURL)/accounts")!
         case .deposits(let page):
             return URL(string: "\(baseURL)/deposits?page=\(page)&per_page=5")!
         case .loans(let page):
